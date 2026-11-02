@@ -5,8 +5,15 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class TargetHit : MonoBehaviour
 {
+    public ScoreManager scoreManager;
+
+    public GameObject brokenCubePrefab;
+
     private Renderer cubeRenderer;
     private AudioSource hitSound;
+
+    public bool enableHaptics = true;
+    public bool enableHitSound = true;
 
     public HapticImpulsePlayer rightHaptics;
     public HapticImpulsePlayer leftHaptics;
@@ -22,35 +29,51 @@ public class TargetHit : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (hasBeenHit)
-            return;
+        return;
 
-       if (other.gameObject.name == "RightSaber" ||
-    other.gameObject.name == "LeftSaber")
-{
-    if (other.gameObject.name == "RightSaber")
+    if (other.gameObject.name == "RightSaber" ||
+        other.gameObject.name == "LeftSaber")
     {
-        rightHaptics.SendHapticImpulse(0.7f, 0.15f);
-    }
-    else
-    {
-        leftHaptics.SendHapticImpulse(0.7f, 0.15f);
-    }
+        if (enableHaptics)
+        {
+            if (other.gameObject.name == "RightSaber")
+            {
+                rightHaptics.SendHapticImpulse(0.7f, 0.15f);
+            }
+            else
+            {
+                leftHaptics.SendHapticImpulse(0.7f, 0.15f);
+            }
+        }
 
-    StartCoroutine(HitCube());
+        StartCoroutine(HitCube());
+    }
 }
-    }
 
     IEnumerator HitCube()
     {
         hasBeenHit = true;
 
-        hitSound.Play();
+        scoreManager.AddPoints(10);
+
+        // hitSound.Play();
+
+        if (enableHitSound)
+{
+    hitSound.Play();
+}
 
         cubeRenderer.material.color = Color.green;
+
+        Instantiate(brokenCubePrefab, transform.position, transform.rotation);
+        cubeRenderer.enabled = false;
+        GetComponent<MovingCube>().enabled = false;
+        Destroy(gameObject, 1f);
 
         yield return new WaitForSeconds(2f);
 
         cubeRenderer.material.color = Color.red;
+        cubeRenderer.enabled = true;
 
         hasBeenHit = false;
     }
