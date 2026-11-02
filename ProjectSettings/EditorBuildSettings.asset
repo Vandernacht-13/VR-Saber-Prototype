@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SaberGame_MovingCubes.unity
     guid: fba7d8786acbd8e44bdb0361375033bd
-  - enabled: 1
+  - enabled: 0
     path: Assets/SaberGame_FeedbackTest.unity
     guid: 90f2b63824a4f7340bde0a6d6ec327cd
   m_configObjects:
