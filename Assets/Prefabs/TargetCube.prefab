@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b19d0c311ed5d1646901f230ce26b33a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetHit
   scoreManager: {fileID: 0}
-  brokenCubePrefab: {fileID: 1677061223285052808, guid: 3e338a74f95790f4ba4de4b8cd94145c, type: 3}
+  enableHaptics: 1
+  enableHitSound: 1
   rightHaptics: {fileID: 0}
   leftHaptics: {fileID: 0}
 --- !u!82 &2731252909802469794
@@ -241,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664964405b08bd1468d22f7afe914bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingCube
-  moveSpeed: 1
+  moveSpeed: 2
 --- !u!54 &4545346028712174664
 Rigidbody:
   m_ObjectHideFlags: 0
